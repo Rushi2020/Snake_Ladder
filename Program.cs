@@ -1,20 +1,22 @@
-﻿// Player start with position 0
-
+﻿// The player rolls the die to get a number between 1 to 6
 using System;
 
-namespace SnakeLadder
+namespace Snake_And_Ladder
 {
-    internal class Program
+    class Programe
     {
-        static void Main(string[] args)
+        public static int dieRoll()
         {
-            Console.WriteLine("snake ladder game");
-            GamePlay();
+            Random random = new Random();
+            int dieNumber = random.Next(1, 7);
+            return dieNumber;
+        }
+        public static void Main(string[] args)
+        {
+            int position = dieRoll();
+            Console.WriteLine("Position:" + position);
         }
 
-        public static void GamePlay()
-        {
-            int position = 0;
-        }
     }
+
 }
