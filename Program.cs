@@ -1,22 +1,45 @@
-﻿// The player rolls the die to get a number between 1 to 6
-using System;
+﻿using System;
 
-namespace Snake_And_Ladder
+namespace SnakeAndLadder
 {
-    class Programe
+    class Program
     {
-        public static int dieRoll()
+        static void Main(string[] args)
         {
+            //Initializing Constant
+            const int LADDER = 1;
+            const int NOPLAY = 2;
+            const int SNAKE = 3;
+
+            int position = 0;
+
             Random random = new Random();
-            int dieNumber = random.Next(1, 7);
-            return dieNumber;
-        }
-        public static void Main(string[] args)
-        {
-            int position = dieRoll();
-            Console.WriteLine("Position:" + position);
-        }
 
+            int noOnDie = random.Next(1, 7);
+            Console.WriteLine($"No On Die {noOnDie}");
+
+            int options = random.Next(1, 4);
+
+            switch (options)
+            {
+                case LADDER:
+                    position += noOnDie;
+                    break;
+
+                case SNAKE:
+                    position -= noOnDie;
+                    break;
+
+                case NOPLAY:
+                    Console.WriteLine("POSITION " + position);
+                    break;
+
+
+            }
+
+            Console.WriteLine("POSITION " + position);
+
+
+        }
     }
-
 }
