@@ -1,4 +1,6 @@
-﻿using System;
+//Repeat till the player reaches 100 and restrict position value to get below 0 
+
+using System;
 
 namespace SnakeAndLadder
 {
