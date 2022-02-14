@@ -1,4 +1,6 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿// report number of roll and position after every dice roll
+
+
 using System;
 
 namespace SnakeLadder
@@ -18,6 +20,8 @@ namespace SnakeLadder
             const int SNAKE = 2;
             const int NO_PLAY = 3;
 
+            int rollTry = 0;
+
             DiceRolling diceRolling = new DiceRolling();
             UserInfo user = new UserInfo();
 
@@ -27,7 +31,7 @@ namespace SnakeLadder
                 //variables
                 int diceNumber = diceRolling.DiceRoll();
                 int functionNumber = diceRolling.Function();
-                Console.WriteLine(diceNumber);
+                //Console.WriteLine(diceNumber);
                 switch (functionNumber)
                 {
                     case LADDER:
@@ -55,7 +59,10 @@ namespace SnakeLadder
                         Console.WriteLine("default case error");
                         break;
                 }
-                Console.WriteLine(user.UserPosition);
+                rollTry++;
+                Console.WriteLine($"position: {user.UserPosition}");
+                Console.WriteLine($"no. of try: {rollTry}");
+
             }
         }
     }
