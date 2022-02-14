@@ -1,5 +1,9 @@
+ UC-5
+
+
 //Repeat till the player reaches 100 and restrict position value to get below 0 
 
+ master
 using System;
 
 namespace SnakeAndLadder
@@ -12,6 +16,49 @@ namespace SnakeAndLadder
             const int LADDER = 1;
             const int NOPLAY = 2;
             const int SNAKE = 3;
+
+   UC-5
+        public static void GamePlay()
+        {
+            //constants
+            const int LADDER = 1;
+            const int SNAKE = 2;
+            const int NO_PLAY = 3;
+
+            DiceRolling diceRolling = new DiceRolling();
+            UserInfo user = new UserInfo();
+
+            //variables
+            int diceNumber = diceRolling.DiceRoll();
+            int functionNumber = diceRolling.Function();
+            Console.WriteLine(diceNumber);
+            while (user.UserPosition < 100)
+            {
+                switch (functionNumber)
+                {
+                    case LADDER:
+                        user.UserPosition += diceNumber;
+                        break;
+                    case SNAKE:
+                        if (user.UserPosition > diceNumber)
+                        {
+                            user.UserPosition -= diceNumber;
+                        }
+                        else
+                        {
+                            user.UserPosition = 0;
+                            Console.WriteLine("user position negative");
+                        }
+                        break;
+                    case NO_PLAY:
+                        Console.WriteLine("no play");
+                        break;
+                    default:
+                        Console.WriteLine("default case error");
+                        break;
+                }
+                Console.WriteLine(user.UserPosition);
+            }
 
             int position = 0;
 
@@ -42,6 +89,7 @@ namespace SnakeAndLadder
             Console.WriteLine("POSITION " + position);
 
 
+ master
         }
     }
 }
