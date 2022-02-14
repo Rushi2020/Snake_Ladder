@@ -1,3 +1,6 @@
+ UC-7
+﻿// See https://aka.ms/new-console-template for more information
+=======
  UC-6
 ﻿// report number of roll and position after every dice roll
 
@@ -8,6 +11,7 @@
 
 //Repeat till the player reaches 100 and restrict position value to get below 0 
 
+ master
  master
 using System;
 
@@ -32,12 +36,14 @@ namespace SnakeAndLadder
 
  UC-6
             int rollTry = 0;
+            int turnNumber = 1;
 
             DiceRolling diceRolling = new DiceRolling();
-            UserInfo user = new UserInfo();
+            UserInfo user1 = new UserInfo();
+            UserInfo user2 = new UserInfo();
 
 
-            while (user.UserPosition < 100)
+            while (diceRolling.gameEnd == false)
             {
                 //variables
                 int diceNumber = diceRolling.DiceRoll();
@@ -47,10 +53,20 @@ namespace SnakeAndLadder
                 {
                     case LADDER:
                         //user.UserPosition= user.UserPosition + diceNumber <= 100? user.UserPosition: user.UserPosition + diceNumber;
-                        if (user.UserPosition + diceNumber <= 100)
+                        if (turnNumber == 1 && user1.UserPosition + diceNumber <= 100)
                         {
-                            user.UserPosition += diceNumber;
+                            user1.UserPosition += diceNumber;
                         }
+                        else if (turnNumber == 2 && user2.UserPosition + diceNumber <= 100)
+                        {
+                            user2.UserPosition += diceNumber;
+                        }
+                        else
+                        {
+                            Console.WriteLine("max limit 100");
+                        }
+
+ UC-7
 
             DiceRolling diceRolling = new DiceRolling();
             UserInfo user = new UserInfo();
@@ -66,28 +82,41 @@ namespace SnakeAndLadder
                     case LADDER:
                         user.UserPosition += diceNumber;
  master
+ master
                         break;
                     case SNAKE:
-                        if (user.UserPosition > diceNumber)
+                        if (turnNumber == 1 && user1.UserPosition > diceNumber)
                         {
-                            user.UserPosition -= diceNumber;
+                            user1.UserPosition -= diceNumber;
+                        }
+                        else if (turnNumber == 2 && user2.UserPosition > diceNumber)
+                        {
+                            user2.UserPosition -= diceNumber;
                         }
                         else
                         {
-                            user.UserPosition = 0;
-                            Console.WriteLine("user position negative");
+                            Console.WriteLine("negative");
                         }
+                        turnNumber = diceRolling.UserTurn(turnNumber);
                         break;
                     case NO_PLAY:
                         Console.WriteLine("no play");
+                        turnNumber = diceRolling.UserTurn(turnNumber);
                         break;
                     default:
                         Console.WriteLine("default case error");
                         break;
                 }
+ UC-7
+                if (user1.UserPosition >= 100 || user2.UserPosition >= 100)
+                {
+                    diceRolling.gameEnd = true;
+                }
+
  UC-6
+ master
                 rollTry++;
-                Console.WriteLine($"position: {user.UserPosition}");
+                Console.WriteLine($"position 1: {user1.UserPosition} 2: {user2.UserPosition}");
                 Console.WriteLine($"no. of try: {rollTry}");
 
             }
