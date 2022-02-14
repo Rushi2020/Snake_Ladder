@@ -1,23 +1,16 @@
- UC-5
-
-
-//Repeat till the player reaches 100 and restrict position value to get below 0 
-
- master
+// See https://aka.ms/new-console-template for more information
 using System;
 
-namespace SnakeAndLadder
+namespace SnakeLadder
 {
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {
-            //Initializing Constant
-            const int LADDER = 1;
-            const int NOPLAY = 2;
-            const int SNAKE = 3;
+            Console.WriteLine("snake ladder game");
+            GamePlay();
+        }
 
-   UC-5
         public static void GamePlay()
         {
             //constants
@@ -28,16 +21,21 @@ namespace SnakeAndLadder
             DiceRolling diceRolling = new DiceRolling();
             UserInfo user = new UserInfo();
 
-            //variables
-            int diceNumber = diceRolling.DiceRoll();
-            int functionNumber = diceRolling.Function();
-            Console.WriteLine(diceNumber);
+
             while (user.UserPosition < 100)
             {
+                //variables
+                int diceNumber = diceRolling.DiceRoll();
+                int functionNumber = diceRolling.Function();
+                Console.WriteLine(diceNumber);
                 switch (functionNumber)
                 {
                     case LADDER:
-                        user.UserPosition += diceNumber;
+                        //user.UserPosition= user.UserPosition + diceNumber <= 100? user.UserPosition: user.UserPosition + diceNumber;
+                        if (user.UserPosition + diceNumber <= 100)
+                        {
+                            user.UserPosition += diceNumber;
+                        }
                         break;
                     case SNAKE:
                         if (user.UserPosition > diceNumber)
@@ -59,37 +57,6 @@ namespace SnakeAndLadder
                 }
                 Console.WriteLine(user.UserPosition);
             }
-
-            int position = 0;
-
-            Random random = new Random();
-
-            int noOnDie = random.Next(1, 7);
-            Console.WriteLine($"No On Die {noOnDie}");
-
-            int options = random.Next(1, 4);
-
-            switch (options)
-            {
-                case LADDER:
-                    position += noOnDie;
-                    break;
-
-                case SNAKE:
-                    position -= noOnDie;
-                    break;
-
-                case NOPLAY:
-                    Console.WriteLine("POSITION " + position);
-                    break;
-
-
-            }
-
-            Console.WriteLine("POSITION " + position);
-
-
- master
         }
     }
 }
