@@ -1,4 +1,9 @@
+ UC-6
+﻿// report number of roll and position after every dice roll
+
+
  UC-5
+ master
 
 
 //Repeat till the player reaches 100 and restrict position value to get below 0 
@@ -25,6 +30,28 @@ namespace SnakeAndLadder
             const int SNAKE = 2;
             const int NO_PLAY = 3;
 
+ UC-6
+            int rollTry = 0;
+
+            DiceRolling diceRolling = new DiceRolling();
+            UserInfo user = new UserInfo();
+
+
+            while (user.UserPosition < 100)
+            {
+                //variables
+                int diceNumber = diceRolling.DiceRoll();
+                int functionNumber = diceRolling.Function();
+                //Console.WriteLine(diceNumber);
+                switch (functionNumber)
+                {
+                    case LADDER:
+                        //user.UserPosition= user.UserPosition + diceNumber <= 100? user.UserPosition: user.UserPosition + diceNumber;
+                        if (user.UserPosition + diceNumber <= 100)
+                        {
+                            user.UserPosition += diceNumber;
+                        }
+
             DiceRolling diceRolling = new DiceRolling();
             UserInfo user = new UserInfo();
 
@@ -38,6 +65,7 @@ namespace SnakeAndLadder
                 {
                     case LADDER:
                         user.UserPosition += diceNumber;
+ master
                         break;
                     case SNAKE:
                         if (user.UserPosition > diceNumber)
@@ -57,6 +85,13 @@ namespace SnakeAndLadder
                         Console.WriteLine("default case error");
                         break;
                 }
+ UC-6
+                rollTry++;
+                Console.WriteLine($"position: {user.UserPosition}");
+                Console.WriteLine($"no. of try: {rollTry}");
+
+            }
+
                 Console.WriteLine(user.UserPosition);
             }
 
@@ -89,6 +124,7 @@ namespace SnakeAndLadder
             Console.WriteLine("POSITION " + position);
 
 
+ master
  master
         }
     }
