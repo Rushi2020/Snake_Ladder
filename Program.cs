@@ -1,18 +1,6 @@
- UC-7
+ 
 ﻿// See https://aka.ms/new-console-template for more information
-=======
- UC-6
-﻿// report number of roll and position after every dice roll
 
-
- UC-5
- master
-
-
-//Repeat till the player reaches 100 and restrict position value to get below 0 
-
- master
- master
 using System;
 
 namespace SnakeAndLadder
@@ -26,7 +14,7 @@ namespace SnakeAndLadder
             const int NOPLAY = 2;
             const int SNAKE = 3;
 
-   UC-5
+   
         public static void GamePlay()
         {
             //constants
@@ -34,7 +22,7 @@ namespace SnakeAndLadder
             const int SNAKE = 2;
             const int NO_PLAY = 3;
 
- UC-6
+ 
             int rollTry = 0;
             int turnNumber = 1;
 
@@ -66,7 +54,7 @@ namespace SnakeAndLadder
                             Console.WriteLine("max limit 100");
                         }
 
- UC-7
+ 
 
             DiceRolling diceRolling = new DiceRolling();
             UserInfo user = new UserInfo();
@@ -81,8 +69,7 @@ namespace SnakeAndLadder
                 {
                     case LADDER:
                         user.UserPosition += diceNumber;
- master
- master
+ 
                         break;
                     case SNAKE:
                         if (turnNumber == 1 && user1.UserPosition > diceNumber)
@@ -107,14 +94,12 @@ namespace SnakeAndLadder
                         Console.WriteLine("default case error");
                         break;
                 }
- UC-7
+ 
                 if (user1.UserPosition >= 100 || user2.UserPosition >= 100)
                 {
                     diceRolling.gameEnd = true;
                 }
 
- UC-6
- master
                 rollTry++;
                 Console.WriteLine($"position 1: {user1.UserPosition} 2: {user2.UserPosition}");
                 Console.WriteLine($"no. of try: {rollTry}");
@@ -152,9 +137,6 @@ namespace SnakeAndLadder
 
             Console.WriteLine("POSITION " + position);
 
-
- master
- master
         }
     }
 }
